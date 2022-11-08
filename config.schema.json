@@ -17,6 +17,12 @@
                 "default": false,
                 "description": "If true, the switch remains on instead of being automatically turned off."
             },
+            "logCmd": {
+                "title": "logCmd",
+                "type": "boolean",
+                "required": false,
+                "default": false
+            },
             "onCmd": {
                 "title": "On Command",
                 "type": "string",

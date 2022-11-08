@@ -9,7 +9,7 @@ module.exports = function(homebridge) {
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
   HomebridgeAPI = homebridge;
-  homebridge.registerAccessory("homebridge-cmdtriggerswitch", "CmdTriggerSwitch", CmdTriggerSwitch);
+  homebridge.registerAccessory("homebridge-cmdtriggerswitch2", "CmdTriggerSwitch2", CmdTriggerSwitch2);
 }
 
 function keepIntInRange(num, min, max){
@@ -17,7 +17,7 @@ function keepIntInRange(num, min, max){
   return Math.min(Math.max(parsed, min), max);
 }
 
-function CmdTriggerSwitch(log, config) {
+function CmdTriggerSwitch2(log, config) {
   this.log = log;
   this.timeout = -1;		
   this.restoredFromCacheState = false;
@@ -39,8 +39,9 @@ function CmdTriggerSwitch(log, config) {
   this.createAccessoryInformationService();
 }
 
-CmdTriggerSwitch.prototype.setupConfig = function(config) {
+CmdTriggerSwitch2.prototype.setupConfig = function(config) {
   this.name = config.name;
+  this.logCmd = config.logCmd ? config.logCmd : false;
   this.onCmd = config.onCmd;
   this.offCmd = config.offCmd;
   this.stateful = config.stateful ? config.stateful : false;
@@ -80,7 +81,7 @@ CmdTriggerSwitch.prototype.setupConfig = function(config) {
   }
 }
 
-CmdTriggerSwitch.prototype.createSwitchService = function() {
+CmdTriggerSwitch2.prototype.createSwitchService = function() {
   this.switchService = new Service.Switch(this.name);
 
   this.switchService.getCharacteristic(Characteristic.On)
@@ -145,18 +146,18 @@ CmdTriggerSwitch.prototype.createSwitchService = function() {
   }
 }
 
-CmdTriggerSwitch.prototype.createAccessoryInformationService = function() {
+CmdTriggerSwitch2.prototype.createAccessoryInformationService = function() {
   this.accessoryInformationService =  new Service.AccessoryInformation()
     .setCharacteristic(Characteristic.Name, this.name)
-    .setCharacteristic(Characteristic.Manufacturer, 'hans-1')
-    .setCharacteristic(Characteristic.Model, 'Command Trigger Switch');
+    .setCharacteristic(Characteristic.Manufacturer, 'Mrfatboy')
+    .setCharacteristic(Characteristic.Model, 'Command Trigger Switch2');
 }
 
-CmdTriggerSwitch.prototype.getServices = function() {
+CmdTriggerSwitch2.prototype.getServices = function() {
   return [this.accessoryInformationService,  this.switchService];
 }
 
-CmdTriggerSwitch.prototype.switchSetOn = function(on, callback) {
+CmdTriggerSwitch2.prototype.switchSetOn = function(on, callback) {
 
   this.log("Setting switch to " + on);
 
@@ -169,7 +170,9 @@ CmdTriggerSwitch.prototype.switchSetOn = function(on, callback) {
         delayMs = this.delay*this.delayFactor;
         this.storage.setItemSync(`${this.name} - startTime`, Date.now());
       }
-      this.log("Delay in ms: " + delayMs);
+      if (this.debug) {
+        this.log("Delay in ms: " + delayMs);
+      }
       this.timeout = setTimeout(function() {
         this.switchService.setCharacteristic(Characteristic.On, false);
       }.bind(this), delayMs);
@@ -189,12 +192,20 @@ CmdTriggerSwitch.prototype.switchSetOn = function(on, callback) {
   } else {
     if (on) {
       if (this.onCmd !== undefined) {
-        this.log("Executing ON command: '" + this.onCmd + "'");
+        if (this.logCmd) {
+          this.log("Executing ON command: '" + this.onCmd + "'");
+        } else {
+          this.log("Executing ON command: Logging off");
+        }
         exec(this.onCmd);
       }
     } else {
       if (this.offCmd !== undefined) {
-        this.log("Executing OFF command: '" + this.offCmd + "'");
+        if (this.logCmd) {
+          this.log("Executing OFF command: '" + this.offCmd + "'");
+        } else {
+          this.log("Executing OFF command: Logging off");
+        }
         exec(this.offCmd);
       }
     }
@@ -203,7 +214,7 @@ CmdTriggerSwitch.prototype.switchSetOn = function(on, callback) {
   callback();
 }
 
-CmdTriggerSwitch.prototype.switchSetDelay = function(delay, callback) {
+CmdTriggerSwitch2.prototype.switchSetDelay = function(delay, callback) {
   // this.log(`${this.interactiveDelayLabel}: ${delay}${this.delayUnit}`);
   this.delay = delay;
   this.storage.setItemSync(`${this.name} - interactiveDelay`, delay);

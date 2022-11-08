@@ -1,17 +1,17 @@
 {
-  "name": "homebridge-cmdtriggerswitch",
+  "name": "homebridge-cmdtriggerswitch2",
   "version": "1.2.0",
-  "description": "Switch that triggers a command for Homebridge",
+  "description": "Switch that triggers a command for Homebridge with logging control",
   "license": "ISC",
   "keywords": [
     "homebridge-plugin"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/hans-1/homebridge-cmdtriggerswitch.git"
+    "url": "git://github.com/mrfatboy/homebridge-cmdtriggerswitch2.git"
   },
   "bugs": {
-    "url": "http://github.com/hans-1/homebridge-cmdtriggerswitch/issues"
+    "url": "http://github.com/mrfatboy/homebridge-cmdtriggerswitch2/issues"
   },
   "engines": {
     "node": ">=0.12.0",

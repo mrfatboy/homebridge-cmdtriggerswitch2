@@ -1,23 +1,24 @@
-# homebridge-cmdtriggerswitch
+# homebridge-cmdtriggerswitch2
 
 [![npm](https://img.shields.io/npm/v/homebridge-cmdtriggerswitch.svg)](https://www.npmjs.com/package/homebridge-cmdtriggerswitch)
 [![npm](https://img.shields.io/npm/dt/homebridge-cmdtriggerswitch.svg)](https://www.npmjs.com/package/homebridge-cmdtriggerswitch)
 
-A fake switch for Homebridge that triggers a CLI command when turned on or off.
+A fake switch for Homebridge that triggers a CLI command when turned on or off.  This is a fork of the CmdTriggerSwitch plugin.  An Extra logging flag has been added to hide/minimize cmd logging.
 
 ## Installation
 
 1. Install Homebridge, see https://homebridge.io/.
-2. Install this plugin using: `npm install --save homebridge-cmdtriggerswitch@latest`.
+2. Install this plugin using: `npm install --save homebridge-cmdtriggerswitch2@latest`.
 3. Update your Homebridge `config.json` using the sample below.
 
 Example config.json with a stateful switch:
 ```
     "accessories": [
         {
-            "accessory": "CmdTriggerSwitch",
+            "accessory": "CmdTriggerSwitch2",
             "name": "Heating,
             "stateful": true,
+            "logCmd":true,
             "onCmd": "echo Heating ON",
             "offCmd": "echo Heating OFF"
         }
@@ -28,9 +29,10 @@ Example config.json with a (simulated) stateless switch:
 ```
     "accessories": [
         {
-            "accessory": "CmdTriggerSwitch",
+            "accessory": "CmdTriggerSwitch2",
             "name": "Switch-01,
             "stateful": false,
+            "logCmd":true,
             "onCmd": "echo Switch-01 is now ON",
             "offCmd": "echo Switch-01 is now OFF",
             "delay": 1000
@@ -47,9 +49,10 @@ The default behavior of a statefull CmdTriggerSwitch is that it remains on and m
 ```
     "accessories": [
         {
-            "accessory": "CmdTriggerSwitch",
+            "accessory": "CmdTriggerSwitch2",
             "name": "Switch-02,
             "stateful": true,
+            "logCmd":true,
             "onCmd": "echo Switch-02 is now ON",
             "offCmd": "echo Switch-02 is now OFF"
         }
@@ -65,9 +68,10 @@ You may also want to create a stateless CmdTriggerSwitch that turns itself off a
 ```
     "accessories": [
         {
-            "accessory": "CmdTriggerSwitch",
+            "accessory": "CmdTriggerSwitch2",
             "name": "Switch-01,
             "stateful": false,
+            "logCmd":true,
             "onCmd": "echo Switch-01 is now ON",
             "offCmd": "echo Switch-01 is now OFF",
             "delay": 5000
@@ -87,9 +91,10 @@ The timeout value for a stateless switch can be directly changed in a supported 
 ```
     "accessories": [
         {
-            "accessory": "CmdTriggerSwitch",
+            "accessory": "CmdTriggerSwitch2",
             "name": "Switch-02",
             "stateful": false,
+            "logCmd":true,
             "onCmd": "echo Switch-01 is now ON",
             "offCmd": "echo Switch-01 is now OFF",
             "delay": 5,
@@ -115,6 +120,7 @@ The appearance in 'Eve for HomeKit' of the above example is depicted below:
 | accessory | Must always be `CmdTriggerSwitch`.                                         | Yes      |
 | name      | Name of the switch. Must be unique.                                        | Yes      |
 | stateful  | Flag to indicate if the switch is stateful (true) or stateless (false).    | Yes      |
+| logCmd    | Flag to indicate if the switch Cmd should be logged (true) or (false).     | No       |
 | onCmd     | CLI command that is executed when the switch is turned on.                 | No       |
 | offCmd    | CLI command that is executed when the switch is turned off.                | No       |
 | delay     | Timeout value in the unit specified by the argument 'delayUnit' after which the switch turns off itself. If not specified, defaults to 100 units. Only evaluated for stateless switches. If interactiveDelay is specified, this specifies the initial value.         | No       |
