@@ -1,5 +1,5 @@
 {
-    "pluginAlias": "CmdTriggerSwitch",
+    "pluginAlias": "CmdTriggerSwitch2",
     "pluginType": "accessory",
     "singular": false,
     "schema": {

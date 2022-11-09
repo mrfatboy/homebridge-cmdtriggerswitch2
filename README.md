@@ -1,7 +1,7 @@
 # homebridge-cmdtriggerswitch2
 
-[![npm](https://img.shields.io/npm/v/homebridge-cmdtriggerswitch.svg)](https://www.npmjs.com/package/homebridge-cmdtriggerswitch)
-[![npm](https://img.shields.io/npm/dt/homebridge-cmdtriggerswitch.svg)](https://www.npmjs.com/package/homebridge-cmdtriggerswitch)
+[![npm](https://img.shields.io/npm/v/homebridge-cmdtriggerswitch.svg)](https://www.npmjs.com/package/homebridge-cmdtriggerswitch2)
+[![npm](https://img.shields.io/npm/dt/homebridge-cmdtriggerswitch.svg)](https://www.npmjs.com/package/homebridge-cmdtriggerswitch2)
 
 A fake switch for Homebridge that triggers a CLI command when turned on or off.  This is a fork of the CmdTriggerSwitch plugin.  An Extra logging flag has been added to hide/minimize cmd logging.
 
@@ -44,7 +44,7 @@ With this plugin, you can create any number of fake switches that will execute a
 
 ## Stateful Switches
 
-The default behavior of a statefull CmdTriggerSwitch is that it remains on and must be manually turned off. You can do this by passing the 'stateful' argument with the value true in your config.json:
+The default behavior of a statefull CmdTriggerSwitch2 is that it remains on and must be manually turned off. You can do this by passing the 'stateful' argument with the value true in your config.json:
 
 ```
     "accessories": [
@@ -63,7 +63,7 @@ The argument 'onCmd' is used to specifiy the CLI command that is executed when t
 
 ## Stateless Switches
 
-You may also want to create a stateless CmdTriggerSwitch that turns itself off after being on for a given time (for example, five seconds). This can be done by passing the 'stateful' argument with the value false and the 'delay' argument with the timeout value (in milliseconds) in your config.json:
+You may also want to create a stateless CmdTriggerSwitch2 that turns itself off after being on for a given time (for example, five seconds). This can be done by passing the 'stateful' argument with the value false and the 'delay' argument with the timeout value (in milliseconds) in your config.json:
 
 ```
     "accessories": [
@@ -117,7 +117,7 @@ The appearance in 'Eve for HomeKit' of the above example is depicted below:
 
 | Argument  | Description                                                                | Required |
 |-----------|----------------------------------------------------------------------------|----------|
-| accessory | Must always be `CmdTriggerSwitch`.                                         | Yes      |
+| accessory | Must always be `CmdTriggerSwitch2`.                                         | Yes      |
 | name      | Name of the switch. Must be unique.                                        | Yes      |
 | stateful  | Flag to indicate if the switch is stateful (true) or stateless (false).    | Yes      |
 | logCmd    | Flag to indicate if the switch Cmd should be logged (true) or (false).     | No       |
