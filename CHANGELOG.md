@@ -5,7 +5,8 @@ All notable changes to this project are documented in this file. This project us
 
 ### Notable Changes
 
-
+## 1.0.3 (2022-11-09)
+add logcmd flag description
 
 ## 1.0.2 (2022-11-09)
 Changed logging text

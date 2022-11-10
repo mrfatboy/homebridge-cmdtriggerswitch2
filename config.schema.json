@@ -21,7 +21,8 @@
                 "title": "logCmd",
                 "type": "boolean",
                 "required": false,
-                "default": false
+                "default": false,
+                "description": "If true, the onCmd & offCmd will be displayed in the Homebridge logs."
             },
             "onCmd": {
                 "title": "On Command",
