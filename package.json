@@ -1,6 +1,6 @@
 {
   "name": "homebridge-cmdtriggerswitch2",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Switch that triggers a command for Homebridge with logging control",
   "license": "ISC",
   "keywords": [

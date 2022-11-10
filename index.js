@@ -195,7 +195,7 @@ CmdTriggerSwitch2.prototype.switchSetOn = function(on, callback) {
         if (this.logCmd) {
           this.log("Executing ON command: '" + this.onCmd + "'");
         } else {
-          this.log("Executing ON command: Logging off");
+          this.log("Executing ON command: Logging disabled");
         }
         exec(this.onCmd);
       }
@@ -204,7 +204,7 @@ CmdTriggerSwitch2.prototype.switchSetOn = function(on, callback) {
         if (this.logCmd) {
           this.log("Executing OFF command: '" + this.offCmd + "'");
         } else {
-          this.log("Executing OFF command: Logging off");
+          this.log("Executing OFF command: Logging disabled");
         }
         exec(this.offCmd);
       }
